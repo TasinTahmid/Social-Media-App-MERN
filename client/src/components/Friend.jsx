@@ -19,6 +19,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
 
+  const isSelf = _id === friendId;
   const isFriend = friends.find((friend) => friend._id === friendId);
 
   const patchFriend = async () => {
@@ -64,7 +65,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
           </Typography>
         </Box>
       </FlexBetween>
-      <IconButton
+      {!isSelf && <IconButton
         onClick={() => patchFriend()}
         sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
       >
@@ -73,7 +74,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
         ) : (
           <PersonAddOutlined sx={{ color: primaryDark }} />
         )}
-      </IconButton>
+      </IconButton>}
     </FlexBetween>
   );
 };
